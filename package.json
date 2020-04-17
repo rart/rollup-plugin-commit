@@ -1,0 +1,10 @@
+{
+  "name": "rollup-plugin-commit",
+  "version": "0.0.1",
+  "description": "Commit files to git after the rollup bundle is done.",
+  "main": "src/index.js",
+  "repository": "https://github.com/rart/rollup-plugin-commit",
+  "author": "Roy Art",
+  "license": "MIT",
+  "private": false
+}
