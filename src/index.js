@@ -23,7 +23,15 @@ function rollupPluginCommit(options) {
     writeBundle(options) {
       const target = targets.find(target => Boolean(options[cleanName(target)]));
       if (target) {
-        exec(`git commit ${target} -m "${commitMessage(message, cleanName(target))}" > /dev/null`);
+        const callback = (op) => (error, stdout, stderr) => (error)
+            ? console.error(stderr || `Failed to ${op} "${target}" \n ${error.cmd}.`)
+            : console.log(stdout || `Git ${op} successful for "${target}".`);
+        exec(
+          `git add ${target} ${
+            '&&'
+          } git commit ${target} -m "${commitMessage(message, cleanName(target))}"`,
+          callback('add/commit')
+        );
       }
     }
   };
