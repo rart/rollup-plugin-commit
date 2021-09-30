@@ -19,7 +19,7 @@ function rollupPluginCommit(options) {
   const targets = options.targets || [];
   const message = options.message || 'Updates to {file} @ {date} {time}';
   return {
-    name: 'rollup-plugin-post-write-commit',
+    name: 'rollup-plugin-commit',
     writeBundle(options) {
       const target = targets.find(target => Boolean(options[cleanName(target)]));
       if (target) {
