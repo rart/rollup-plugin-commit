@@ -24,7 +24,7 @@ function rollupPluginCommit(options) {
       const target = targets.find(target => Boolean(options[cleanName(target)]));
       if (target) {
         const callback = (op) => (error, stdout, stderr) => (error)
-            ? console.error(stderr || `Failed to ${op} "${target}" \n ${error.cmd}.`)
+            ? console.error(stderr || `Failed to ${op} "${target}" \n ${error.cmd}. ${stdout ? ('\n' + stdout) : ''}`)
             : console.log(stdout || `Git ${op} successful for "${target}".`);
         exec(
           `git add ${target} ${
